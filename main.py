@@ -19,7 +19,7 @@ async def main():
             if not area:
                 Actor.log.warning(f'Location not found: {loc}'); continue
             Actor.log.info(f'Searching {label}')
-            data = await asyncio.to_thread(overpass, build_query(area, cats, contact))
+            data = await asyncio.to_thread(overpass, build_query(area, cats, contact), Actor.log.warning)
             for el in data.get('elements', []):
                 r = row(el)
                 key = r['osmUrl']

@@ -17,11 +17,11 @@ CATEGORIES = {
 }
 
 
-def get(url, data=None, tries=2):
+def get(url, data=None, tries=2, timeout=200):
     for i in range(tries):
         try:
             req = urllib.request.Request(url, data=data, headers={'User-Agent': UA, 'Accept': '*/*'})
-            with urllib.request.urlopen(req, timeout=200) as r:
+            with urllib.request.urlopen(req, timeout=timeout) as r:
                 return json.loads(r.read())
         except Exception:
             if i == tries - 1: raise
@@ -43,12 +43,13 @@ def build_query(area, cats, contact):
     return f'[out:json][timeout:180];area({area})->.a;(\n' + '\n'.join(lines) + '\n);out tags center;'
 
 
-def overpass(query):
+def overpass(query, log=print):
     data = urllib.parse.urlencode({'data': query}).encode()
     last = None
     for url in OVERPASS:
-        try: return get(url, data)
-        except Exception as e: last = e
+        try: return get(url, data, tries=1, timeout=150)
+        except Exception as e:
+            log(f'{url.split("/")[2]} failed ({e}), trying the next mirror'); last = e
     raise last
 
 
