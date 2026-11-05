@@ -1,0 +1,10 @@
+{
+  "actorSpecification": 1,
+  "name": "businesses-without-website",
+  "title": "Businesses Without a Website Finder (OpenStreetMap)",
+  "description": "Find local businesses that have NO website in any city or region worldwide: restaurants, salons, shops, garages, trades. Returns name, category, address, phone, email, Facebook/Instagram and GPS. Built for web agencies and freelancers looking for clients.",
+  "version": "1.0",
+  "dockerfile": "../Dockerfile",
+  "input": "./input_schema.json",
+  "storages": { "dataset": "./dataset_schema.json" }
+}

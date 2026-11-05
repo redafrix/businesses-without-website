@@ -1,0 +1,10 @@
+{
+  "actorSpecification": 1,
+  "views": {
+    "overview": {
+      "title": "Businesses",
+      "transformation": {"fields": ["name", "category", "phone", "email", "facebook", "instagram", "address", "postcode", "city", "osmUrl"]},
+      "display": {"component": "table", "properties": {"osmUrl": {"format": "link"}}}
+    }
+  }
+}

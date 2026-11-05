@@ -1,0 +1,13 @@
+{
+  "title": "Businesses without a website",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "locations": {"title": "Locations", "type": "array", "editor": "stringList", "description": "Cities, regions or countries, one per line. Add the country for clarity, e.g. \"Lyon, France\", \"Austin, Texas\", \"Bavaria, Germany\".", "prefill": ["Annecy, France"]},
+    "categories": {"title": "Business categories", "type": "array", "editor": "select", "description": "Leave empty for all categories.", "items": {"type": "string", "enum": ["restaurants", "beauty", "food_shops", "retail", "auto", "trades", "health", "fitness", "lodging"], "enumTitles": ["Restaurants, cafés, bars", "Hair & beauty salons, tattoo", "Bakeries, butchers, delis, wine shops", "Retail shops", "Car repair & dealers", "Trades & crafts (plumbers, electricians…)", "Dentists, doctors, vets, pharmacies", "Gyms & studios", "Hotels & guest houses"]}},
+    "requireContact": {"title": "Must have", "type": "string", "editor": "select", "description": "Only return businesses that list this contact detail.", "enum": ["any", "email", "phone"], "enumTitles": ["No requirement", "An email address", "A phone number"], "default": "any"},
+    "skipChains": {"title": "Skip chains and franchises", "type": "boolean", "description": "Skip places tagged with a brand (chains usually have a central website).", "default": true},
+    "maxResults": {"title": "Max results", "type": "integer", "description": "Maximum number of businesses to save.", "default": 500, "minimum": 1, "maximum": 50000}
+  },
+  "required": ["locations"]
+}
